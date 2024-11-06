@@ -1,13 +1,13 @@
-// src/presentation/components/Top14Matches.tsx
+// src/presentation/components/LeagueMatches.tsx
 import React, { useEffect, useState } from 'react';
-import { FetchTop14MatchesUseCase } from '../../core/domain/useCases/FetchTop14MatchesUseCase';
+import { FetchLeagueMatchesUseCase } from '../../core/domain/useCases/FetchLeagueMatchesUseCase';
 import { MatchRepository } from '../../data/repositories/MatchRepository';
 import { Match } from '../../core/domain/entities/Match';
 import MatchTable from './MatchTable';
 
-const Top14Matches: React.FC = () => {
+const LeagueMatches: React.FC = () => {
   const [matches, setMatches] = useState<Match[]>([]);
-  const fetchMatchesUseCase = new FetchTop14MatchesUseCase(new MatchRepository());
+  const fetchMatchesUseCase = new FetchLeagueMatchesUseCase(new MatchRepository());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,4 +25,4 @@ const Top14Matches: React.FC = () => {
   );
 };
 
-export default Top14Matches;
+export default LeagueMatches;

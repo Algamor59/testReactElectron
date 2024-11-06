@@ -1,11 +1,11 @@
-// src/core/domain/useCases/FetchTop14MatchesUseCase.ts
+// src/core/domain/useCases/FetchLeagueMatchesUseCase.ts
 import { Match } from '../entities/Match';
 import { MatchRepository } from '../../../data/repositories/MatchRepository';
 
-export class FetchTop14MatchesUseCase {
+export class FetchLeagueMatchesUseCase {
   constructor(private matchRepository: MatchRepository) {}
 
   async execute(): Promise<Match[]> {
-    return await this.matchRepository.fetchTop14Matches();
+    return await this.matchRepository.fetchLeagueMatches();
   }
 }
