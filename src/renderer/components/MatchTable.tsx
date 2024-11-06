@@ -28,7 +28,7 @@ const MatchTable: React.FC<MatchTableProps> = ({ matches }) => {
             <th>Équipe Domicile</th>
             <th>Score</th>
             <th>Équipe Extérieure</th>
-            <th>Statut</th> {/* Nouvelle colonne pour le statut */}
+            <th>Statut</th> {}
           </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@ const MatchTable: React.FC<MatchTableProps> = ({ matches }) => {
                 <img src={match.awayLogo} alt={match.awayTeam} style={{ width: '40px', height: 'auto', marginRight: '10px' }} />
                 {match.awayTeam}
               </td>
-              <td>{match.status}</td> {/* Affichage du statut */}
+              <td>{match.status}</td> {}
             </tr>
           ))}
         </tbody>

@@ -11,6 +11,21 @@ export class RugbyApi {
     this.apiKey = config.api.apiKey;
   }
 
+  async getLeagues() {
+    try {
+      const response = await axios.get(`${this.baseUrl}/leagues`, {
+        headers: {
+          'x-rapidapi-key': this.apiKey,
+          'x-rapidapi-host': 'v1.rugby.api-sports.io',
+        },
+      });
+      return response.data.response;
+    } catch (error) {
+      console.error('Error fetching leagues:', error);
+      throw error;
+    }
+  }
+
   async getMatches(leagueId: number, season: string) {
     try {
       const response = await axios.get(`${this.baseUrl}/games`, {

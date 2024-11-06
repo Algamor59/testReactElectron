@@ -1,7 +1,7 @@
 // src/renderer/components/LeagueMatches.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../App.css'; // Assurez-vous que le CSS est importé
+import '../App.css';
 import MatchTable from './MatchTable';
 
 const LeagueMatches: React.FC = () => {
