@@ -6,18 +6,52 @@ body {
   position: relative;
   color: white;
   height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
+  /* background-color: green; */
+  background-image: url("top14.png");
+  background-size:contain;
+  font-family:Arial, Helvetica, sans-serif;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.table-container {
+  max-height: 700px; /* Ajuste la hauteur maximum selon tes besoins */
+  overflow-y: auto; /* Active le défilement vertical */
+  border: 2px solid wheat; /* Ajoute une bordure autour du conteneur */
+  border-top: -30px;
+  margin-top: -70px; /* Marge au-dessus du tableau */
+  max-width: 10000px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: #6BBF4E; /* Couleur verte pour le fond des cellules */
+  color: white; /* Couleur du texte pour le contraste */
+}
+
+th {
+  background-color: #4B8B3B; /* Une teinte plus foncée pour les en-têtes */
+}
+h2{
+  width: 1300px;
+  margin-left: 0px;
+  margin-top: 80px;
+  font-style:bold;
+  font-size: 80px;
+  background-color: #4B8B3B;
+}
+h1{
+  background-color: #4B8B3B;
+}
+
 
 button {
   background-color: white;

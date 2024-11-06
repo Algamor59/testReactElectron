@@ -1,50 +1,28 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+// src/renderer/App.tsx
+import { MemoryRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-
-function Hello() {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-}
+import Top14Matches from './components/Top14Matches'; // Assurez-vous que ce chemin est correct
 
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Hello />} />
+        <Route path="/top14" element={<Top14Matches />} />
       </Routes>
     </Router>
+  );
+}
+
+function Hello() {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <h1>Bienvenue sur l'application de résultats de Rugby</h1>
+      <Link to="/top14" style={{ textDecoration: 'none' }}>
+        <button type="button">
+          🏉 Voir les résultats de Championnat 2024
+        </button>
+      </Link>
+    </div>
   );
 }
