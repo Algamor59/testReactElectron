@@ -1,6 +1,6 @@
 // src/renderer/components/MatchTable.tsx
 import React from 'react';
-import '../App.css'; // Assurez-vous d'importer le CSS si nécessaire
+import '../App.css';
 
 interface Match {
   id: number;
@@ -11,6 +11,7 @@ interface Match {
   awayScore: number;
   homeLogo: string;
   awayLogo: string;
+  status: string; // Nouveau champ pour le statut
 }
 
 interface MatchTableProps {
@@ -27,6 +28,7 @@ const MatchTable: React.FC<MatchTableProps> = ({ matches }) => {
             <th>Équipe Domicile</th>
             <th>Score</th>
             <th>Équipe Extérieure</th>
+            <th>Statut</th> {/* Nouvelle colonne pour le statut */}
           </tr>
         </thead>
         <tbody>
@@ -42,6 +44,7 @@ const MatchTable: React.FC<MatchTableProps> = ({ matches }) => {
                 <img src={match.awayLogo} alt={match.awayTeam} style={{ width: '40px', height: 'auto', marginRight: '10px' }} />
                 {match.awayTeam}
               </td>
+              <td>{match.status}</td> {/* Affichage du statut */}
             </tr>
           ))}
         </tbody>

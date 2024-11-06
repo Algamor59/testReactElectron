@@ -37,6 +37,7 @@ const Top14Matches: React.FC = () => {
             awayScore: match.scores.away,
             homeLogo: match.teams.home.logo,
             awayLogo: match.teams.away.logo,
+            status: match.status.long, // Utiliser le status.long pour le statut du match
           };
         }));
       } catch (error) {
