@@ -51,6 +51,28 @@ h2{
 h1{
   background-color: #4B8B3B;
 }
+/* Ajoutez ceci dans votre fichier App.css ou un fichier CSS associé */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Crée un espacement entre les éléments */
+  padding: 0px;
+  background-color: #4B8B3B;
+}
+
+.select-container {
+  display: flex;
+  background-color: #4B8B3B;
+
+  flex-direction: column;
+  gap: 2px; /* Crée un petit espacement entre les menus déroulants */
+}
+
+.table-container {
+  margin-top: 0px;
+  background-color: #4B8B3B;
+
+}
 
 
 button {
