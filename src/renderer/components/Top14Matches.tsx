@@ -84,8 +84,13 @@ const Top14Matches: React.FC = () => {
     if (selectedLeague !== null) {
       const league = leagues.find(league => league.id === selectedLeague);
       if (league) {
-        setSeasons(league.seasons.map((season: any) => season.season));
-        setSelectedSeason(league.seasons[0].season); // Définir la première saison comme valeur par défaut
+        // Trier les saisons dans l'ordre décroissant
+        const sortedSeasons = league.seasons
+          .map((season: any) => season.season)
+          .sort((a, b) => parseInt(b) - parseInt(a)); // Tri décroissant
+
+        setSeasons(sortedSeasons);
+        setSelectedSeason(sortedSeasons[0]); // Définir la première saison comme valeur par défaut
       }
     }
   }, [selectedLeague, leagues]);
