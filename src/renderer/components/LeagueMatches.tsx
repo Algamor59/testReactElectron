@@ -1,10 +1,10 @@
-// src/renderer/components/Top14Matches.tsx
+// src/renderer/components/LeagueMatches.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css'; // Assurez-vous que le CSS est importé
 import MatchTable from './MatchTable';
 
-const Top14Matches: React.FC = () => {
+const LeagueMatches: React.FC = () => {
   const [matches, setMatches] = useState<any[]>([]);
   const [leagues, setLeagues] = useState<any[]>([]); // Liste des ligues
   const [selectedLeague, setSelectedLeague] = useState<number | null>(null); // Ligue sélectionnée
@@ -139,4 +139,4 @@ const Top14Matches: React.FC = () => {
   );
 };
 
-export default Top14Matches;
+export default LeagueMatches;

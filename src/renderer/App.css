@@ -8,7 +8,7 @@ body {
   height: 100vh;
   /* background-color: green; */
   background-image: url("top14.png");
-  background-size:contain;
+  background-size:cover;
   font-family:Arial, Helvetica, sans-serif;
   overflow-y: hidden;
   display: flex;
