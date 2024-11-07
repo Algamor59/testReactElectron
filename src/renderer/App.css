@@ -201,3 +201,129 @@ footer {
   margin-top: 50px;
   font-size: 1rem;
 }
+
+.upcoming-matches ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;  /* Limite la largeur du conteneur */
+}
+
+.upcoming-matches li {
+  background-color: rgba(255, 255, 255, 0.9);  /* Fond blanc semi-transparent */
+  color: #333;  /* Texte sombre */
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  max-width: 100%;  /* Assure que l'élément de la liste n'excède pas la largeur de son parent */
+  margin-left: auto;  /* Centrer l'élément */
+  margin-right: auto; /* Centrer l'élément */
+}
+
+
+
+.upcoming-matches li:hover {
+  background-color: #e0e0e0;  /* Couleur légèrement plus foncée au survol */
+}
+
+.upcoming-matches .team-info {
+  display: flex;
+  align-items: center;
+}
+
+.upcoming-matches .team-info img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;  /* Un peu d'espace entre le logo et le nom */
+}
+
+.upcoming-matches .match-time {
+  font-weight: bold;
+  color: #333;
+}
+
+
+.match-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.match-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.match-date {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.teams {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.team-logo {
+  width: 40px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.team-name {
+  font-weight: bold;
+}
+
+.vs {
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+.upcoming-matches h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;  /* Texte blanc pour contraster avec le fond */
+}
+/* Style pour le bouton Retour */
+.btn-retour {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 20px 0;
+  display: block;
+  text-align: center;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-retour:hover {
+  background-color: #45a049;
+}
