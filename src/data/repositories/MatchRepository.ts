@@ -9,7 +9,7 @@ export class MatchRepository {
     this.rugbyApi = new RugbyApi();
   }
 
-  async fetchTop14Matches(): Promise<Match[]> {
+  async fetchLeagueMatches(): Promise<Match[]> {
     const matchDataList = await this.rugbyApi.getMatches(16, '2024');
 
     return matchDataList.map((matchData: any) => ({
@@ -28,6 +28,7 @@ export class MatchRepository {
       },
       homeScore: matchData.scores.home,
       awayScore: matchData.scores.away,
+      week: matchData.week,
     }));
   }
 }
