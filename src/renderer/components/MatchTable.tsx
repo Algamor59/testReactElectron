@@ -140,3 +140,4 @@ const MatchTable: React.FC<MatchTableProps> = ({ matches, leagueSelected }) => {
 };
 
 export default MatchTable;
+  

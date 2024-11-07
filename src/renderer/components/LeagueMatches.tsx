@@ -1,10 +1,9 @@
-// src/renderer/components/LeagueMatches.tsx
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import MatchTable from './MatchTable';
 import { RugbyApi } from '../../data/api/rugbyApi';
+import UpcomingMatches from './UpcomingMatches';
 
-// eslint-disable-next-line react/function-component-definition
 const LeagueMatches: React.FC = () => {
   const [matches, setMatches] = useState<any[]>([]);
   const [leagues, setLeagues] = useState<any[]>([]);
@@ -113,8 +112,17 @@ const LeagueMatches: React.FC = () => {
         </div>
       )}
 
+      {/* Affichage de la liste des prochains matchs si aucune ligue n'est sélectionnée */}
+      {!selectedLeague && <UpcomingMatches />}
+
+      {/* Bouton retour */}
+      {selectedLeague && (
+        <button className="btn-retour" onClick={() => setSelectedLeague(null)}>
+          Retour
+        </button>
+      )}
+
       <div className="table-container">
-        {/* Transmettre la prop `leagueSelected` */}
         <MatchTable matches={matches} leagueSelected={selectedLeague !== null} />
       </div>
     </div>
