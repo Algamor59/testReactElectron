@@ -4,6 +4,7 @@ import { config } from '../../config/config';
 
 export class RugbyApi {
   private baseUrl: string;
+
   private apiKey: string;
 
   constructor() {
@@ -35,7 +36,7 @@ export class RugbyApi {
         },
         params: {
           league: leagueId,
-          season: season,
+          season,
         },
       });
       return response.data.response;
