@@ -3,10 +3,12 @@ import '../App.css';
 import MatchTable from './MatchTable';
 import { RugbyApi } from '../../data/api/rugbyApi';
 import UpcomingMatches from './UpcomingMatches';
+import { Match } from '../../core/domain/entities/Match';
+import { League } from '../../core/domain/entities/League';
 
 const LeagueMatches: React.FC = () => {
-  const [matches, setMatches] = useState<any[]>([]);
-  const [leagues, setLeagues] = useState<any[]>([]);
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [leagues, setLeagues] = useState<League[]>([]);
   const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
   const [selectedSeason, setSelectedSeason] = useState<string>('2024');
   const [seasons, setSeasons] = useState<string[]>([]);
