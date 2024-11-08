@@ -13,4 +13,5 @@ export interface Match {
   awayTeam: Team;
   homeScore: number;
   awayScore: number;
+  week: number;
 }

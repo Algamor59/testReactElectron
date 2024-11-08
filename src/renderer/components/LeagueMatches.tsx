@@ -1,53 +1,38 @@
-// src/renderer/components/LeagueMatches.tsx
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../App.css'; // Assurez-vous que le CSS est importé
+import '../App.css';
 import MatchTable from './MatchTable';
+import { RugbyApi } from '../../data/api/rugbyApi';
+import UpcomingMatches from './UpcomingMatches';
+import { Match } from '../../core/domain/entities/Match';
+import { League } from '../../core/domain/entities/League';
 
 const LeagueMatches: React.FC = () => {
-  const [matches, setMatches] = useState<any[]>([]);
-  const [leagues, setLeagues] = useState<any[]>([]); // Liste des ligues
-  const [selectedLeague, setSelectedLeague] = useState<number | null>(null); // Ligue sélectionnée
-  const [selectedSeason, setSelectedSeason] = useState<string>('2024'); // Saison sélectionnée
-  const [seasons, setSeasons] = useState<string[]>([]); // Saison(s) disponibles pour la ligue sélectionnée
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [leagues, setLeagues] = useState<League[]>([]);
+  const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
+  const [selectedSeason, setSelectedSeason] = useState<string>('2024');
+  const [seasons, setSeasons] = useState<string[]>([]);
+  const rugbyApi = new RugbyApi();
 
-  // Récupérer les ligues disponibles
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const response = await axios.get('https://v1.rugby.api-sports.io/leagues', {
-          headers: {
-            'x-rapidapi-key': '7288bc3137ad52a99c9fe3715fde0e43',
-            'x-rapidapi-host': 'v1.rugby.api-sports.io',
-          }
-        });
-        setLeagues(response.data.response);
+        const leaguesData = await rugbyApi.getLeagues();
+        setLeagues(leaguesData);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchLeagues();
   }, []);
 
-  // Récupérer les matchs pour la ligue et la saison sélectionnées
   useEffect(() => {
     const fetchMatches = async () => {
       if (!selectedLeague) return;
 
       try {
-        const response = await axios.get(`https://v1.rugby.api-sports.io/games`, {
-          params: {
-            league: selectedLeague,
-            season: selectedSeason,
-          },
-          headers: {
-            'x-rapidapi-key': '7288bc3137ad52a99c9fe3715fde0e43',
-            'x-rapidapi-host': 'v1.rugby.api-sports.io',
-          },
-        });
-
-        setMatches(response.data.response.map((match: any) => {
+        const matchesData = await rugbyApi.getMatches(selectedLeague, selectedSeason);
+        setMatches(matchesData.map((match: any) => {
           const dateObj = new Date(match.date);
           const formattedDate = dateObj.toLocaleDateString('fr-FR', {
             year: 'numeric',
@@ -77,20 +62,17 @@ const LeagueMatches: React.FC = () => {
     };
 
     fetchMatches();
-  }, [selectedLeague, selectedSeason]); // Recharger les matchs lorsque la ligue ou la saison change
+  }, [selectedLeague, selectedSeason]);
 
-  // Mettre à jour les saisons disponibles lors de la sélection d'une ligue
   useEffect(() => {
     if (selectedLeague !== null) {
       const league = leagues.find(league => league.id === selectedLeague);
       if (league) {
-        // Trier les saisons dans l'ordre décroissant
         const sortedSeasons = league.seasons
           .map((season: any) => season.season)
-          .sort((a, b) => parseInt(b) - parseInt(a)); // Tri décroissant
-
+          .sort((a, b) => parseInt(b) - parseInt(a));
         setSeasons(sortedSeasons);
-        setSelectedSeason(sortedSeasons[0]); // Définir la première saison comme valeur par défaut
+        setSelectedSeason(sortedSeasons[0]);
       }
     }
   }, [selectedLeague, leagues]);
@@ -132,8 +114,18 @@ const LeagueMatches: React.FC = () => {
         </div>
       )}
 
+      {/* Affichage de la liste des prochains matchs si aucune ligue n'est sélectionnée */}
+      {!selectedLeague && <UpcomingMatches />}
+
+      {/* Bouton retour */}
+      {selectedLeague && (
+        <button className="btn-retour" onClick={() => setSelectedLeague(null)}>
+          Retour
+        </button>
+      )}
+
       <div className="table-container">
-        <MatchTable matches={matches} />
+        <MatchTable matches={matches} leagueSelected={selectedLeague !== null} />
       </div>
     </div>
   );

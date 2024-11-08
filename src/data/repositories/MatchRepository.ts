@@ -28,6 +28,7 @@ export class MatchRepository {
       },
       homeScore: matchData.scores.home,
       awayScore: matchData.scores.away,
+      week: matchData.week,
     }));
   }
 }

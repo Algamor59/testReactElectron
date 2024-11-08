@@ -1,118 +1,329 @@
-/*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
- *        See https://github.com/webpack-contrib/sass-loader#imports
- */
 body {
-  position: relative;
-  color: white;
-  height: 100vh;
-  /* background-color: green; */
-  background-image: url("top14.png");
-  background-size:cover;
-  font-family:Arial, Helvetica, sans-serif;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(7px);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Autres styles du texte et de la table */
+h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Style de la table */
 .table-container {
-  max-height: 700px; /* Ajuste la hauteur maximum selon tes besoins */
-  overflow-y: auto; /* Active le défilement vertical */
-  border: 2px solid wheat; /* Ajoute une bordure autour du conteneur */
-  border-top: -30px;
-  margin-top: -70px; /* Marge au-dessus du tableau */
-  max-width: 10000px;
+  overflow-x: auto;
+  margin-bottom: 30px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+th,
+td {
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1rem;
   border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  background-color: #6BBF4E; /* Couleur verte pour le fond des cellules */
-  color: white; /* Couleur du texte pour le contraste */
+  background-color: #fff; /* Définir un fond blanc pour éviter la transparence */
+  color: #333; /* Assurer que le texte soit sombre et lisible */
 }
 
 th {
-  background-color: #4B8B3B; /* Une teinte plus foncée pour les en-têtes */
-}
-h2{
-  width: 1300px;
-  margin-left: 0px;
-  margin-top: 80px;
-  font-style:bold;
-  font-size: 80px;
-  background-color: #4B8B3B;
-}
-h1{
-  background-color: #4B8B3B;
-}
-/* Ajoutez ceci dans votre fichier App.css ou un fichier CSS associé */
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Crée un espacement entre les éléments */
-  padding: 0px;
-  background-color: #4B8B3B;
-}
-
-.select-container {
-  display: flex;
-  background-color: #4B8B3B;
-
-  flex-direction: column;
-  gap: 2px; /* Crée un petit espacement entre les menus déroulants */
-}
-
-.table-container {
-  margin-top: 0px;
-  background-color: #4B8B3B;
-
-}
-
-
-button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
   cursor: pointer;
-  opacity: 0.9;
 }
 
-button:hover {
-  transform: scale(1.05);
+/* Flèches visibles par défaut sur toutes les colonnes triables */
+/* Flèches visibles par défaut sur toutes les colonnes triables */
+th .arrow {
+  margin-left: 10px;
+  font-size: 1.5rem; /* Flèches plus grandes */
+  color: white;
+  opacity: 0.8; /* Visibilité des flèches par défaut */
+}
+
+/* Flèches tri croissant (blanches) */
+.sorted-asc .arrow-up::before {
+  content: '↑';
+  color: white;
+}
+
+/* Flèches tri décroissant (blanches) */
+.sorted-desc .arrow-down::before {
+  content: '↓';
+  color: white;
+}
+
+/* Pour augmenter la visibilité des flèches lors du survol */
+th:hover .arrow {
   opacity: 1;
 }
 
-li {
-  list-style: none;
+
+/* Style des scores */
+.score {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 50px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+  line-height: 1.6rem;
+  width: 50px;
+  margin: 0 auto;
 }
 
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
+.score.winner {
+  color: #1e90ff;
+  background-color: #e6f7ff;
 }
 
-a:hover {
-  opacity: 1;
-  text-decoration: none;
+.score.loser {
+  color: #ff4500;
+  background-color: #ffe6e6;
 }
 
-.Hello {
+.score.draw {
+  color: #ffd700;
+  background-color: #fffbe6;
+}
+
+/* En-tête de la semaine */
+.week-header {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 12px 0;
+  color: #666;
+}
+
+/* Styles des menus déroulants */
+.select-container {
+  margin: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+label {
+  font-size: 1rem;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+select {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 250px;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+}
+
+/* Responsive pour petites écrans */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .select-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  select {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #4CAF50;
+  color: white;
+  margin-top: 50px;
+  font-size: 1rem;
+}
+
+.upcoming-matches ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;  /* Limite la largeur du conteneur */
+}
+
+.upcoming-matches li {
+  background-color: rgba(255, 255, 255, 0.9);  /* Fond blanc semi-transparent */
+  color: #333;  /* Texte sombre */
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  max-width: 100%;  /* Assure que l'élément de la liste n'excède pas la largeur de son parent */
+  margin-left: auto;  /* Centrer l'élément */
+  margin-right: auto; /* Centrer l'élément */
+}
+
+
+
+.upcoming-matches li:hover {
+  background-color: #e0e0e0;  /* Couleur légèrement plus foncée au survol */
+}
+
+.upcoming-matches .team-info {
+  display: flex;
+  align-items: center;
+}
+
+.upcoming-matches .team-info img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;  /* Un peu d'espace entre le logo et le nom */
+}
+
+.upcoming-matches .match-time {
+  font-weight: bold;
+  color: #333;
+}
+
+
+.match-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.match-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.match-date {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.teams {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.team-logo {
+  width: 40px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.team-name {
+  font-weight: bold;
+}
+
+.vs {
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+.upcoming-matches h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;  /* Texte blanc pour contraster avec le fond */
+}
+/* Style pour le bouton Retour */
+.btn-retour {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
   margin: 20px 0;
+  display: block;
+  text-align: center;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-retour:hover {
+  background-color: #45a049;
 }
